@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <?php
-    require_once 'getHead.php';
+    require_once 'getHead.php'; // on a vu
     setHead();
     ?>
     <body>
         <?php
         session_start();
         //vérification de la session
-        require 'getNavClient.php';
+        require 'getNavClient.php'; //redirection pige rien
         if (isset($_SESSION['CLIENT_MAIL'])) {
-            require '../sqlconnect.php';
+            require '../sqlconnect.php'; // BASE DE DONNER BLIBLI33
             $sql = 'select * from client where CLIENT_MAIL="' . $_SESSION['CLIENT_MAIL'] . '"';
             $req = $connection->query($sql);
             $donnee=$req->fetch();
             $sql2 = 'SELECT count(*) as nb_livre FROM livre';
             $nb = $connection->query($sql2);
             ?>
-            <div id="current_page">
+            <div id="current_page">                              <!-- colone -->
                 <h1>Index</h1><h2>Connecté(e) : <?php echo $donnee['CLIENT_NOM']; ?></h2><a href="../images/client/<?php echo $donnee['CLIENT_PHOTO']?>"><img class="cliImg" src="../images/client/<?php echo $donnee['CLIENT_PHOTO']?>" /></a>
             </div>
             <div id="main_content">

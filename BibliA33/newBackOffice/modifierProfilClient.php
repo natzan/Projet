@@ -7,7 +7,7 @@
 <body>
 <?php
     session_start();
-    if (isset($_GET['CLIENT_ID'])){
+    if (isset($_GET['CLIENT_ID'])){ // vraix car non null mais si ses null c faux
         $_SESSION['CLIENT_ID']=$_GET['CLIENT_ID'];
     }
     define('TARGET', '../images/client/');    // Repertoire cible
@@ -45,7 +45,7 @@ if (!empty($_REQUEST)) {
         if (in_array(strtolower($extension), $tabExt)) {
             // On recupere les dimensions du fichier
             $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
-
+            
             // On verifie le type de l'image
             if ($infosImg[2] >= 1 && $infosImg[2] <= 14) {
                 // On verifie les dimensions et taille de l'image

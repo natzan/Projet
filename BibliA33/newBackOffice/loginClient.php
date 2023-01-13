@@ -18,7 +18,7 @@ if ($count > 0) {
 }
 else{
 	?>
-	<script>alert("Erreur: Nom d'utilisateur ou mot de passe incorrect.");
+	<script>alert("Erreur: Nom d'utilisateur ou mot de passe incorrect."); //javascript header = windows.location.href = "vufutf.php";
             window.location.href = "../connexionClient.php";
 	</script>
 	<?php
