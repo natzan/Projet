@@ -1,0 +1,25 @@
+SQL2 REQUETTE PENCE QU4IL Y A 92 LIVRE
+LORD DU FETCH LA VALEUR RESTE 92
+
+le sql fait apres $aff VEUT que dans la list 
+il ny ai pas les livre du client connecter PAR SON ID
+
+76 livre (77 vrait chiffre)
+
+generaliter des ISBN prit dans la liste ne figure pas dans la bdd fileattente 
+donc on selectionne un truc qui peut pas etre mis en attente APARAMENT
+
+
+"identiter relative"
+
+table:
+emprunter cohere avec livre pour faire la table fileattente
+
+
+pour reservationClient.php
+Les REQUETTE SQL SONT MAUVAISE
+ET faudra améliore l'affichage de la table
+
+pour  ajouterReservationClient.php
+faut regarde se qui fait le mec SQL sa a pas du tout lair maitriser
+

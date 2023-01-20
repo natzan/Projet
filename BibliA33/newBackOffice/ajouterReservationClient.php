@@ -7,6 +7,7 @@
     <body>
         <?php
         session_start();
+        //vérification de la session
         require 'getNavClient.php';
         if (isset($_SESSION['CLIENT_MAIL'])) {
             # code..
@@ -42,6 +43,10 @@
                             $sql2 = "UPDATE livre SET LIV_EMPRUNTER = 1 WHERE LIV_ISBN = '$isbn'";
                             $connection->exec($sql2);                        
                         }
+                        var_dump($_POST);// OUI
+                        var_dump($_SESSION["CLIENT_NOM"]);//NON
+                        var_dump($_SESSION["CLIENT_ID"]);//OUI
+                        var_dump($isbn);// OUI
 
                         $sql2 = "INSERT INTO fileattente (LIV_ISBN, CLIENT_ID, num_attente) VALUES ('$isbn', $idClient, $nb)";
                         $connection->exec($sql2);
