@@ -34,14 +34,25 @@
                                 if ($aff['nb_livre'] >= 1) {
                                     //$sql = 'SELECT * FROM livre WHERE LIV_ISBN NOT IN(SELECT LIV_ISBN FROM fileattente WHERE CLIENT_ID='.$_SESSION['CLIENT_ID'].')';
                                     $sql = 'SELECT * FROM livre WHERE LIV_ISBN IN(SELECT LIV_ISBN FROM fileattente )';
-                                        $table = $connection->query($sql);
-                                        $resu=$table->fetchAll();
-                                        $nombre=count($resu);
+                                    $sql2 = 'SELECT LIV_ISBN,NUM_ATTENTE FROM fileattente';
                                         
+                                        $table = $connection->query($sql);
+                                        $table2 = $connection->query($sql2);
+
+                                        $resu=$table->fetchAll();
+                                        $resu2=$table2->fetchAll();
+
+                                        $nombre=count($resu);
+                                        var_dump($nombre);
+                                        $nombre=$nombre+count($resu2);
+                                        var_dump($nombre);
+
                                         if($nombre>0){
 
                                             $flag = false;
-                                            //var_dump($resu);
+                                            var_dump($resu2);
+                                            var_dump($nombre);
+                                            var_dump($resu);
                                             ?>
                                             
                                             <select id="select_recherche" name="isbn">
@@ -90,9 +101,7 @@
                 <div id="mesDemandes">
                     Votre liste de demande d'emprunt<br>
                     <?php
-                    $sql=$connection->prepare('SELECT * FROM fileattente,livre WHERE fileattente.LIV_ISBN=livre.LIV_ISBN AND CLIENT_ID=? AND NUM_ATTENTE!=0');
-                    $sql->bindParam(1,$_SESSION['CLIENT_ID'],PDO::PARAM_INT);
-                    $sql->execute();
+                    $sql=$connection->query('SELECT * FROM fileattente,livre WHERE fileattente.LIV_ISBN=livre.LIV_ISBN AND CLIENT_ID='.$_SESSION['CLIENT_ID'].' AND NUM_ATTENTE!=0');
                     $resu=$sql->fetchAll();
                     $nb=count($resu);
                     if($nb==0){
@@ -112,7 +121,7 @@
                         foreach($resu as $livre => $ligne){
                             $sql->bindParam(1,$ligne['LIV_ISBN'],PDO::PARAM_STR);
                             $sql->execute();
-                            $res=$sql->fetch();
+                            $res=$sql->fetch();//inutile
                             ?>
                         
                         <tr>
